@@ -1,0 +1,19 @@
+node_modules/
+.next/
+out/
+build/
+.DS_Store
+*.pem
+npm-debug.log*
+.env*.local
+next-env.d.ts
+*.tsbuildinfo
+
+# Python bytecode from scripts/build-pakistan-map-data.py
+__pycache__/
+*.pyc
+
+# Raw Overpass export consumed by the map build script — 26-60MB, and the
+# committed data/pakistan-map.json is what the site actually reads.
+# See scripts/map-data-inputs.md to regenerate.
+data-raw/
