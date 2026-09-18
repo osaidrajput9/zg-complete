@@ -88,7 +88,7 @@ export default function Nav() {
   }, [pathname]);
 
   const navLink =
-    "inline-flex min-h-11 items-center gap-2 rounded-button px-4 text-[0.9375rem] text-mist " +
+    "inline-flex min-h-11 items-center gap-2 rounded-button px-4 type-body-sm text-mist " +
     "transition-colors duration-[var(--hover-duration)] ease-[var(--hover-ease)] " +
     "hover:bg-fill-hover hover:text-cream aria-[current]:text-cream";
 
@@ -137,7 +137,7 @@ export default function Nav() {
                   <li key={service.href}>
                     <Link
                       href={service.href}
-                      className="block rounded-button p-4 text-[0.9375rem] text-mist transition-colors duration-[var(--hover-duration)] ease-[var(--hover-ease)] hover:bg-fill-hover hover:text-cream"
+                      className="block rounded-button p-4 type-body-sm text-mist transition-colors duration-[var(--hover-duration)] ease-[var(--hover-ease)] hover:bg-fill-hover hover:text-cream"
                       aria-current={isActive(service.href) ? "page" : undefined}
                     >
                       {service.label}
@@ -201,7 +201,7 @@ export default function Nav() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="block p-4 text-[0.9375rem] text-mist transition-colors duration-[var(--hover-duration)] ease-[var(--hover-ease)] hover:text-cream"
+                className="block p-4 type-body-sm text-mist transition-colors duration-[var(--hover-duration)] ease-[var(--hover-ease)] hover:text-cream"
                 aria-current={isActive(link.href) ? "page" : undefined}
               >
                 {link.label}

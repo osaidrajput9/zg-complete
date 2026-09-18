@@ -114,7 +114,7 @@ export default function WeightReadout({
         <span>{matched ? "Matched" : "Variance recorded"}</span>
       </p>
 
-      <p className="mt-6 max-w-[48ch] text-[0.9375rem] text-steel">
+      <p className="mt-6 max-w-[48ch] type-body-sm text-steel">
         A typical tanker load, captured at both ends and recorded against the
         consignment. Figures shown are representative of a standard run.
       </p>

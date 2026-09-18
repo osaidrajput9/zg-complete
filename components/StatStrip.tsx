@@ -66,7 +66,7 @@ export default function StatStrip({
               <span data-stat={stat.value}>0</span>
             </span>
             {stat.note && (
-              <span className="mt-4 block text-[0.9375rem] text-mist">{stat.note}</span>
+              <span className="mt-4 block type-body-sm text-mist">{stat.note}</span>
             )}
           </dd>
         </div>

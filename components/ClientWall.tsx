@@ -15,7 +15,7 @@ export default function ClientWall({
           <li
             key={name}
             data-lift
-            className="rounded-surface border border-line px-4 py-4 text-[0.9375rem] tracking-[-0.005em] text-mist transition-colors duration-[var(--hover-duration)] ease-[var(--hover-ease)] hover:border-line-strong hover:bg-fill-hover hover:text-cream"
+            className="rounded-surface border border-line px-4 py-4 type-body-sm tracking-[-0.005em] text-mist transition-colors duration-[var(--hover-duration)] ease-[var(--hover-ease)] hover:border-line-strong hover:bg-fill-hover hover:text-cream"
           >
             {name}
           </li>

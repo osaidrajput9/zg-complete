@@ -53,7 +53,7 @@ export default function ComingSoon({
             {lede}
           </p>
 
-          <ul className="mt-10 space-y-4 border-t border-line pt-8 text-left text-[0.9375rem] text-mist">
+          <ul className="mt-10 space-y-4 border-t border-line pt-8 text-left type-body-sm text-mist">
             {points.map((point) => (
               <li key={point} className="relative pl-6" data-lift>
                 <span

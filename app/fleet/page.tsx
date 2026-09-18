@@ -182,7 +182,7 @@ export default function Fleet() {
               <h3 className="type-h3 text-cream">{category.name}</h3>
               <p className="mt-6 text-mist">{category.body}</p>
               {category.note && (
-                <p className="mt-6 border-t border-line pt-6 text-[0.9375rem] text-steel">
+                <p className="mt-6 border-t border-line pt-6 type-body-sm text-steel">
                   {category.note}
                 </p>
               )}
@@ -244,13 +244,13 @@ export default function Fleet() {
               {trackingPartners.map((partner) => (
                 <li
                   key={partner}
-                  className="border-b border-line pb-4 text-[0.9375rem] text-cream last:border-0 last:pb-0"
+                  className="border-b border-line pb-4 type-body-sm text-cream last:border-0 last:pb-0"
                 >
                   {partner}
                 </li>
               ))}
             </ul>
-            <p className="mt-8 border-t border-line pt-6 text-[0.9375rem] text-steel">
+            <p className="mt-8 border-t border-line pt-6 type-body-sm text-steel">
               Four contacts with the driver every day, for the duration of every
               run.
             </p>

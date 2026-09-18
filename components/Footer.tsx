@@ -41,33 +41,33 @@ export default function Footer() {
           >
             <LogoMark height="34px" />
           </Link>
-          <p className="mt-6 max-w-[26ch] text-[0.9375rem] text-steel">
+          <p className="mt-6 max-w-[26ch] type-body-sm text-steel">
             Bulk liquid haulage across Pakistan since 1991.
           </p>
         </div>
 
         <div>
           <h2 className={label}>Head office</h2>
-          <address className="text-[0.9375rem] not-italic leading-relaxed text-mist">
+          <address className="type-body-sm not-italic leading-relaxed text-mist">
             Karachi, Sindh
             <br />
             <span className="text-steel">Street address to be confirmed</span>
           </address>
 
           <h2 className={`${label} mt-8`}>Site office</h2>
-          <address className="text-[0.9375rem] not-italic leading-relaxed text-mist">
+          <address className="type-body-sm not-italic leading-relaxed text-mist">
             Plot 290, Main National Highway,
             <br />
             Razzakabad, Bin Qasim, Karachi
           </address>
 
           <h2 className={`${label} mt-8`}>Branch</h2>
-          <address className="text-[0.9375rem] not-italic text-mist">Sargodha, Punjab</address>
+          <address className="type-body-sm not-italic text-mist">Sargodha, Punjab</address>
         </div>
 
         <div>
           <h2 className={label}>Services</h2>
-          <ul className="space-y-2 text-[0.9375rem]">
+          <ul className="space-y-2 type-body-sm">
             {services.map((link) => (
               <li key={link.href}>
                 <Link href={link.href} className={listLink}>
@@ -78,7 +78,7 @@ export default function Footer() {
           </ul>
 
           <h2 className={`${label} mt-8`}>Company</h2>
-          <ul className="space-y-2 text-[0.9375rem]">
+          <ul className="space-y-2 type-body-sm">
             {company.map((link) => (
               <li key={link.href}>
                 <Link href={link.href} className={listLink}>
@@ -91,7 +91,7 @@ export default function Footer() {
 
         <div>
           <h2 className={label}>Client portal</h2>
-          <ul className="space-y-2 text-[0.9375rem]">
+          <ul className="space-y-2 type-body-sm">
             {portal.map((link) => (
               <li key={link.href}>
                 <Link href={link.href} className={listLink}>
@@ -105,7 +105,7 @@ export default function Footer() {
           </ul>
 
           <h2 className={`${label} mt-8`}>Contact</h2>
-          <ul className="space-y-2 text-[0.9375rem] text-mist">
+          <ul className="space-y-2 type-body-sm text-mist">
             <li>M. Zeeshan Malik</li>
             <li>
               <a href="mailto:ziagoodsncarriage@gmail.com" className={listLink}>

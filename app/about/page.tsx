@@ -98,12 +98,12 @@ export default function About() {
             <li key={item.step} className="solid p-8" data-lift>
               <p className="type-mono mb-4 text-steel">{item.step}</p>
               <h3 className="type-h3 text-cream">{item.title}</h3>
-              <p className="mt-4 text-[0.9375rem] text-mist">{item.body}</p>
+              <p className="mt-4 type-body-sm text-mist">{item.body}</p>
             </li>
           ))}
         </ol>
 
-        <p className="mt-14 max-w-[62ch] text-[0.9375rem] text-steel" data-lift>
+        <p className="mt-14 max-w-[62ch] type-body-sm text-steel" data-lift>
           Company records carry more than one founding date and more than one
           fleet count. 1991 and 49 are the agreed figures; every other version
           in older material is superseded.
@@ -131,7 +131,7 @@ export default function About() {
               <li key={office.role} className="solid p-8" data-lift>
                 <p className="type-mono mb-4 text-steel">{office.role}</p>
                 <h3 className="type-h3 text-cream">{office.city}</h3>
-                <address className="mt-4 text-[0.9375rem] not-italic leading-relaxed text-mist">
+                <address className="mt-4 type-body-sm not-italic leading-relaxed text-mist">
                   {office.lines.map((line) => (
                     <span key={line} className="block">
                       {line}
@@ -139,7 +139,7 @@ export default function About() {
                   ))}
                   {office.note && <span className="block text-steel">{office.note}</span>}
                 </address>
-                <p className="mt-4 text-[0.9375rem] text-mist">{office.body}</p>
+                <p className="mt-4 type-body-sm text-mist">{office.body}</p>
               </li>
             ))}
           </ul>
@@ -186,7 +186,7 @@ export default function About() {
                 <li
                   key={partner}
                   data-lift
-                  className="solid px-6 py-4 text-[0.9375rem] text-cream"
+                  className="solid px-6 py-4 type-body-sm text-cream"
                 >
                   {partner}
                 </li>
@@ -196,7 +196,7 @@ export default function About() {
             <h3 className="type-mono mb-6 mt-10 text-steel" data-lift>
               Banking
             </h3>
-            <p className="text-[0.9375rem] text-mist" data-lift>
+            <p className="type-body-sm text-mist" data-lift>
               Banking references are available to contract customers on request.
             </p>
             <p className="type-mono mt-4 text-steel" data-lift>

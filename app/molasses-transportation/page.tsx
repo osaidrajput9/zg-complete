@@ -163,7 +163,7 @@ export default function MolassesTransportation() {
               <p className="type-mono pt-[0.35em] text-steel">{item.step}</p>
               <div>
                 <h3 className="type-h3 text-cream">{item.title}</h3>
-                <p className="mt-4 max-w-[64ch] text-[0.9375rem] text-mist">{item.body}</p>
+                <p className="mt-4 max-w-[64ch] type-body-sm text-mist">{item.body}</p>
               </div>
             </li>
           ))}
@@ -280,7 +280,7 @@ export default function MolassesTransportation() {
                   data-lift
                   className="solid flex flex-wrap items-baseline justify-between gap-4 px-6 py-4"
                 >
-                  <p className="flex items-center gap-4 text-[0.9375rem] text-cream">
+                  <p className="flex items-center gap-4 type-body-sm text-cream">
                     <span>{leg.from}</span>
                     <ArrowRight size={14} className="text-steel" />
                     <span>{leg.to}</span>

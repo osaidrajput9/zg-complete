@@ -304,6 +304,15 @@
   text-wrap: pretty;
 }
 
+/* Small body: specs, notes, table cells, card copy. One step under the
+   17px body, and it was written out as text-[0.9375rem] in 47 places
+   before it had a name. It is deliberately not the 16px body size — this
+   is the supporting register, and the two sit next to each other often
+   enough that collapsing them would flatten the hierarchy. */
+@utility type-body-sm {
+  font-size: 0.9375rem; /* 15px */
+}
+
 @utility type-mono {
   font-family: var(--font-mono);
   font-weight: 500;

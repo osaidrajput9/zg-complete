@@ -90,7 +90,7 @@ export default function Contact() {
                 <div key={item.label} className="border-t border-line py-6" data-lift>
                   <dt className="type-mono mb-2 text-steel">{item.label}</dt>
                   <dd
-                    className={`m-0 text-[0.9375rem] ${item.pending ? "text-steel" : "text-cream"}`}
+                    className={`m-0 type-body-sm ${item.pending ? "text-steel" : "text-cream"}`}
                   >
                     {item.href ? (
                       <a
@@ -107,7 +107,7 @@ export default function Contact() {
               ))}
             </dl>
 
-            <p className="mt-8 border-t border-line pt-6 text-[0.9375rem] text-mist" data-lift>
+            <p className="mt-8 border-t border-line pt-6 type-body-sm text-mist" data-lift>
               Telephone is the channel that works fastest. Email is optional on
               the form for the same reason — plenty of buyers in this market
               give a mobile number and never check an inbox.
@@ -140,7 +140,7 @@ export default function Contact() {
                 )}
               </address>
 
-              <p className="mt-6 border-t border-line pt-6 text-[0.9375rem] text-steel">
+              <p className="mt-6 border-t border-line pt-6 type-body-sm text-steel">
                 {office.note}
               </p>
             </article>

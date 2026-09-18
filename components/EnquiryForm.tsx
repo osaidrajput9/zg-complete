@@ -146,7 +146,7 @@ export default function EnquiryForm({
     "transition-colors duration-[var(--hover-duration)] ease-[var(--hover-ease)] " +
     "hover:border-line-strong aria-[invalid=true]:border-cream";
 
-  const labelClass = "flex items-baseline gap-2 text-[0.9375rem] text-cream";
+  const labelClass = "flex items-baseline gap-2 type-body-sm text-cream";
   const flagClass = "font-mono text-[9px] uppercase tracking-[0.1em] text-steel";
 
   return (
@@ -185,7 +185,7 @@ export default function EnquiryForm({
             onInput={() => clearError("name")}
           />
           {errors.name && (
-            <p id="eq-name-error" className="text-[0.9375rem] text-cream">
+            <p id="eq-name-error" className="type-body-sm text-cream">
               {errors.name}
             </p>
           )}
@@ -207,7 +207,7 @@ export default function EnquiryForm({
             onInput={() => clearError("company")}
           />
           {errors.company && (
-            <p id="eq-company-error" className="text-[0.9375rem] text-cream">
+            <p id="eq-company-error" className="type-body-sm text-cream">
               {errors.company}
             </p>
           )}
@@ -229,7 +229,7 @@ export default function EnquiryForm({
             onInput={() => clearError("telephone")}
           />
           {errors.telephone && (
-            <p id="eq-tel-error" className="text-[0.9375rem] text-cream">
+            <p id="eq-tel-error" className="type-body-sm text-cream">
               {errors.telephone}
             </p>
           )}
@@ -250,7 +250,7 @@ export default function EnquiryForm({
             onInput={() => clearError("email")}
           />
           {errors.email && (
-            <p id="eq-email-error" className="text-[0.9375rem] text-cream">
+            <p id="eq-email-error" className="type-body-sm text-cream">
               {errors.email}
             </p>
           )}
@@ -313,7 +313,7 @@ export default function EnquiryForm({
             ref={statusRef}
             role="status"
             aria-live="polite"
-            className="rounded-surface border border-line-strong p-4 text-[0.9375rem] text-cream sm:col-span-2"
+            className="rounded-surface border border-line-strong p-4 type-body-sm text-cream sm:col-span-2"
           >
             {status}
           </p>

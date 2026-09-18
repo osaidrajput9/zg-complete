@@ -129,7 +129,7 @@ export default function EdibleOilTransportation() {
               <p className="type-mono mt-2 text-steel">{grade.spec}</p>
               <p className="mt-6 text-mist">{grade.body}</p>
 
-              <ul className="mt-6 space-y-4 border-t border-line pt-6 text-[0.9375rem] text-mist">
+              <ul className="mt-6 space-y-4 border-t border-line pt-6 type-body-sm text-mist">
                 {grade.points.map((point) => (
                   <li key={point} className="relative pl-6">
                     <span
@@ -215,7 +215,7 @@ export default function EdibleOilTransportation() {
                 <p className="type-mono pt-[0.35em] text-steel">{item.step}</p>
                 <div>
                   <h3 className="type-h3 text-cream">{item.title}</h3>
-                  <p className="mt-4 text-[0.9375rem] text-mist">{item.body}</p>
+                  <p className="mt-4 type-body-sm text-mist">{item.body}</p>
                 </div>
               </li>
             ))}
@@ -261,7 +261,7 @@ export default function EdibleOilTransportation() {
                   data-lift
                   className="solid flex flex-wrap items-baseline justify-between gap-4 px-6 py-4"
                 >
-                  <p className="flex items-center gap-4 text-[0.9375rem] text-cream">
+                  <p className="flex items-center gap-4 type-body-sm text-cream">
                     <span>{leg.from}</span>
                     <ArrowRight size={14} className="text-steel" />
                     <span>{leg.to}</span>

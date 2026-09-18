@@ -154,7 +154,7 @@ export default function ContainersFinishedGoods() {
               <p className="type-mono mt-2 text-steel">{item.spec}</p>
               <p className="mt-6 text-mist">{item.body}</p>
 
-              <ul className="mt-6 space-y-4 border-t border-line pt-6 text-[0.9375rem] text-mist">
+              <ul className="mt-6 space-y-4 border-t border-line pt-6 type-body-sm text-mist">
                 {item.points.map((point) => (
                   <li key={point} className="relative pl-6">
                     <span
@@ -190,7 +190,7 @@ export default function ContainersFinishedGoods() {
           ))}
         </div>
 
-        <p className="mt-10 max-w-[62ch] text-[0.9375rem] text-steel" data-lift>
+        <p className="mt-10 max-w-[62ch] type-body-sm text-steel" data-lift>
           Per-type unit counts are being counted properly rather than estimated.
           The full fleet breakdown, including the tanker side, is on the{" "}
           <a
@@ -273,7 +273,7 @@ export default function ContainersFinishedGoods() {
                   data-lift
                   className="solid flex flex-wrap items-baseline justify-between gap-4 px-6 py-4"
                 >
-                  <p className="flex items-center gap-4 text-[0.9375rem] text-cream">
+                  <p className="flex items-center gap-4 type-body-sm text-cream">
                     <span>{leg.from}</span>
                     <ArrowRight size={14} className="text-steel" />
                     <span>{leg.to}</span>

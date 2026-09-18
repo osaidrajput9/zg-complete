@@ -113,7 +113,7 @@ export default function ChecksStrip() {
           </div>
 
           <h3 className="type-h3 mt-6 text-cream">{check.title}</h3>
-          <p className="mt-4 text-[0.9375rem] text-mist">{check.body}</p>
+          <p className="mt-4 type-body-sm text-mist">{check.body}</p>
         </div>
       ))}
     </div>

@@ -45,13 +45,13 @@ export default function ServiceCards() {
           >
             <p className="type-mono mb-4 text-steel">{service.label}</p>
             <h3 className="type-h3 text-cream">{service.title}</h3>
-            <p className="mt-4 text-[0.9375rem] text-mist">{service.body}</p>
+            <p className="mt-4 type-body-sm text-mist">{service.body}</p>
 
             <p className="type-mono mt-8 border-t border-line pt-6 text-steel">
               {service.spec}
             </p>
 
-            <span className="mt-6 inline-flex items-center gap-2 text-[0.9375rem] text-cream">
+            <span className="mt-6 inline-flex items-center gap-2 type-body-sm text-cream">
               What we carry
               <ArrowRight
                 size={14}

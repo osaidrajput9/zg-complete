@@ -69,9 +69,9 @@ export default function FleetTable({ rows }: { rows: FleetRow[] }) {
                   <span className="type-h3 text-cream">{row.category}</span>
                 )}
               </th>
-              <td className="py-6 pr-6 text-[0.9375rem] text-mist">{row.types}</td>
-              <td className="py-6 pr-6 text-[0.9375rem] text-mist">{row.carries}</td>
-              <td className="py-6 text-[0.9375rem]">
+              <td className="py-6 pr-6 type-body-sm text-mist">{row.types}</td>
+              <td className="py-6 pr-6 type-body-sm text-mist">{row.carries}</td>
+              <td className="py-6 type-body-sm">
                 {row.units ? (
                   <span className="text-cream tabular-nums">{row.units}</span>
                 ) : (
