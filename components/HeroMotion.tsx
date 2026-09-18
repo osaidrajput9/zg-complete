@@ -7,6 +7,17 @@ import { useEffect } from "react";
  * that Preloader, PakistanMap and Hero rendered on the server, selecting
  * by id so the ~175KB of map geometry stays out of the client bundle.
  *
+ * Every position on the timeline below is absolute and comes from
+ * `heroBeats()`. None is written as `"-=0.4"`: a relative offset makes
+ * each beat a function of the one before it, so what the sequence is
+ * actually saying — the headline lands on a map that is still drawing —
+ * is nowhere written down, and any change to a duration upstream drags
+ * everything after it.
+ *
+ * The chain is also written in the order things actually happen, which a
+ * relative chain cannot guarantee: the corridor pulse used to be written
+ * last and fire two beats before the stat counter.
+ *
  * GSAP is imported inside the effect, like everywhere else on this site:
  * ScrollSmoother and SplitText reach for window when motion.js registers
  * them, and a client component is still rendered on the server for the
@@ -22,13 +33,15 @@ export default function HeroMotion() {
     let cleanup: (() => void) | undefined;
 
     (async () => {
-      const [{ gsap }, motion] = await Promise.all([
+      const [{ gsap }, motion, sequence] = await Promise.all([
         import("gsap"),
         import("@/lib/motion"),
+        import("@/lib/sequence"),
       ]);
       if (cancelled) return;
 
-      const { DUR, EASE, HERO, LIFT_Y, STAGGER, withMotion } = motion;
+      const { DUR, EASE, LIFT_Y, STAGGER } = motion;
+      const { HERO, MAP, heroBeats, withMotion } = sequence;
 
       const q = <T extends Element>(selector: string) =>
         gsap.utils.toArray<T>(selector);
@@ -46,6 +59,18 @@ export default function HeroMotion() {
       const headlineSpans = q<HTMLElement>("#hero h1 .ln span");
       const numEls = q<HTMLElement>("#hero .num");
       const softEnter = ["#hero .sub", "#hero .actions", "#hero .stats"];
+
+      /* The corridor tween drives all three stacked strokes at once, so
+         the sweep is measured across the set rather than across one of
+         them. */
+      const corridorSet = [...bloomRoads, ...haloRoads, ...corRoads];
+
+      const at = heroBeats({
+        dots: mapDots.length,
+        contextRoads: ctxRoads.length,
+        corridorRoads: corridorSet.length,
+        headlineLines: headlineSpans.length,
+      });
 
       /* Path-length setup needs real rendered geometry, so it happens here
          even though the paths themselves are server-rendered. */
@@ -92,10 +117,10 @@ export default function HeroMotion() {
               { strokeDashoffset: len },
               {
                 strokeDashoffset: 0,
-                duration: HERO.pulseDuration,
+                duration: MAP.pulseDuration,
                 ease: EASE.hold,
                 repeat: -1,
-                delay: i * HERO.pulseStaggerStep,
+                delay: i * MAP.pulseStaggerStep,
               },
             ),
           );
@@ -105,10 +130,10 @@ export default function HeroMotion() {
             gsap.to(ring, {
               attr: { r: 17 },
               opacity: 0,
-              duration: HERO.ringPulseDuration,
+              duration: MAP.ringPulseDuration,
               ease: EASE.flow,
               repeat: -1,
-              delay: i * HERO.ringPulseStaggerStep,
+              delay: i * MAP.ringPulseStaggerStep,
             }),
           );
         });
@@ -128,68 +153,77 @@ export default function HeroMotion() {
         });
       };
 
+      /* In the order they happen. Each position is an absolute second
+         from `at`, so moving one beat does not drag the rest with it. */
       const reveal = () => {
         timeline = gsap
           .timeline()
-          .to(pre, {
-            opacity: 0,
-            duration: HERO.preloaderFadeDuration,
-            ease: EASE.veil,
-            onComplete: () => {
-              pre.style.display = "none";
+          .to(
+            pre,
+            {
+              opacity: 0,
+              duration: HERO.preloaderFadeDuration,
+              /* Carry is the vocabulary's in-out: a large object moving
+                 steadily, and the preloader is the largest object on the
+                 page. */
+              ease: EASE.carry,
+              onComplete: () => {
+                pre.style.display = "none";
+              },
             },
-          })
-          .to(hero, { opacity: 1, duration: DUR.lift, ease: EASE.lift }, "-=0.4")
+            at.veil,
+          )
+          .to(hero, { opacity: 1, duration: DUR.lift, ease: EASE.lift }, at.hero)
           .to(
             mapDots,
             {
               opacity: 1,
               duration: DUR.lift,
               ease: EASE.lift,
-              stagger: { each: HERO.mapDotStagger, from: "start" },
+              stagger: { each: MAP.dotStagger, from: "start" },
             },
-            "-=0.3",
+            at.country,
           )
           .to(
             outlines,
-            { opacity: 1, duration: HERO.outlineDuration, ease: EASE.settle },
-            "-=0.4",
+            { opacity: 1, duration: MAP.outlineDuration, ease: EASE.settle },
+            at.outline,
           )
           .to(
             ctxRoads,
             {
               strokeDashoffset: 0,
-              duration: HERO.contextRoadDuration,
+              duration: MAP.contextRoadDuration,
               ease: EASE.carry,
-              stagger: HERO.contextRoadStagger,
+              stagger: MAP.contextRoadStagger,
             },
-            "-=0.5",
+            at.context,
           )
           .to(
-            [bloomRoads, haloRoads, corRoads],
+            corridorSet,
             {
               strokeDashoffset: 0,
-              duration: HERO.corridorRoadDuration,
+              duration: MAP.corridorRoadDuration,
               ease: EASE.carry,
-              stagger: HERO.corridorRoadStagger,
+              stagger: MAP.corridorRoadStagger,
             },
-            "-=1.2",
-          )
-          .to(
-            nodeGs,
-            { opacity: 1, duration: DUR.settle, ease: EASE.settle, stagger: HERO.nodeStagger },
-            "-=1.1",
+            at.corridor,
           )
           .to(
             headlineSpans,
             { yPercent: 0, duration: HERO.headlineDuration, ease: EASE.lift, stagger: STAGGER },
-            "-=1.6",
+            at.headline,
           )
-          .to("#hero .sub", { opacity: 1, y: 0, duration: DUR.lift, ease: EASE.lift }, "-=0.5")
-          .to("#hero .actions", { opacity: 1, y: 0, duration: DUR.lift, ease: EASE.lift }, "-=0.35")
-          .to("#hero .stats", { opacity: 1, y: 0, duration: DUR.lift, ease: EASE.lift }, "-=0.35")
-          .add(() => numEls.forEach((el) => countTo(el, HERO.statCountDuration)), "-=0.2")
-          .add(pulseFlow, "-=1.0");
+          .to(
+            nodeGs,
+            { opacity: 1, duration: DUR.settle, ease: EASE.settle, stagger: MAP.nodeStagger },
+            at.nodes,
+          )
+          .add(pulseFlow, at.pulse)
+          .to("#hero .sub", { opacity: 1, y: 0, duration: DUR.lift, ease: EASE.lift }, at.sub)
+          .to("#hero .actions", { opacity: 1, y: 0, duration: DUR.lift, ease: EASE.lift }, at.actions)
+          .to("#hero .stats", { opacity: 1, y: 0, duration: DUR.lift, ease: EASE.lift }, at.stats)
+          .add(() => numEls.forEach((el) => countTo(el, HERO.statCountDuration)), at.statCount);
       };
 
       withMotion(() => {

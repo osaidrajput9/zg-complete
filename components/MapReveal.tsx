@@ -34,14 +34,19 @@ export default function MapReveal({
     let cleanup: (() => void) | undefined;
 
     (async () => {
-      const [{ gsap }, motion, { ScrollTrigger }] = await Promise.all([
+      const [{ gsap }, motion, sequence, { ScrollTrigger }] = await Promise.all([
         import("gsap"),
         import("@/lib/motion"),
+        import("@/lib/sequence"),
         import("gsap/ScrollTrigger"),
       ]);
       if (cancelled) return;
 
-      const { EASE, DUR, HERO, START, prefersReducedMotion } = motion;
+      const { EASE, DUR, START, prefersReducedMotion } = motion;
+      const { MAP, corridorBeats } = sequence;
+
+      /* Absolute positions, from the same place the hero's come from. */
+      const at = corridorBeats();
 
       const q = <T extends SVGElement>(selector: string) =>
         Array.from(root.querySelectorAll<T>(selector));
@@ -85,31 +90,31 @@ export default function MapReveal({
 
       const timeline = gsap.timeline({ paused: true });
       timeline
-        .to(outlines, { opacity: 1, duration: HERO.outlineDuration, ease: EASE.settle }, 0)
+        .to(outlines, { opacity: 1, duration: MAP.outlineDuration, ease: EASE.settle }, at.outline)
         .to(
           ctxRoads,
           {
             strokeDashoffset: 0,
-            duration: HERO.contextRoadDuration,
+            duration: MAP.contextRoadDuration,
             ease: EASE.carry,
-            stagger: HERO.contextRoadStagger,
+            stagger: MAP.contextRoadStagger,
           },
-          0.1,
+          at.context,
         )
         .to(
           corRoads,
           {
             strokeDashoffset: 0,
-            duration: HERO.corridorRoadDuration,
+            duration: MAP.corridorRoadDuration,
             ease: EASE.carry,
-            stagger: HERO.corridorRoadStagger,
+            stagger: MAP.corridorRoadStagger,
           },
-          DUR.lift,
+          at.corridor,
         )
         .to(
           nodeGs,
-          { opacity: 1, duration: DUR.settle, ease: EASE.settle, stagger: HERO.nodeStagger },
-          DUR.carry,
+          { opacity: 1, duration: DUR.settle, ease: EASE.settle, stagger: MAP.nodeStagger },
+          at.nodes,
         );
 
       const loops: gsap.core.Tween[] = [];
@@ -136,10 +141,10 @@ export default function MapReveal({
                 { strokeDashoffset: Number(path.dataset.len) },
                 {
                   strokeDashoffset: 0,
-                  duration: HERO.pulseDuration,
+                  duration: MAP.pulseDuration,
                   ease: EASE.hold,
                   repeat: -1,
-                  delay: index * HERO.pulseStaggerStep,
+                  delay: index * MAP.pulseStaggerStep,
                 },
               ),
             );
@@ -150,10 +155,10 @@ export default function MapReveal({
               gsap.to(ring, {
                 attr: { r: 17 },
                 opacity: 0,
-                duration: HERO.ringPulseDuration,
+                duration: MAP.ringPulseDuration,
                 ease: EASE.flow,
                 repeat: -1,
-                delay: index * HERO.ringPulseStaggerStep,
+                delay: index * MAP.ringPulseStaggerStep,
               }),
             );
           });
