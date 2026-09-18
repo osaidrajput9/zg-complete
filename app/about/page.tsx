@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { YEARS_OPERATING } from "@/lib/site";
 import PageHero from "@/components/PageHero";
 import Section from "@/components/Section";
 import MapReveal from "@/components/MapReveal";
@@ -69,7 +70,7 @@ const trackingPartners = [
 ];
 
 const stats = [
-  { value: 35, label: "Years on the road", note: "Carrying bulk liquid since 1991" },
+  { value: YEARS_OPERATING, label: "Years on the road", note: "Carrying bulk liquid since 1991" },
   { value: 3, label: "Offices", note: "Karachi, Port Qasim and Sargodha" },
   { value: 4, label: "Tracking providers", note: "Independent of each other" },
   { value: 4, label: "Driver checks a day", note: "For the duration of every run" },
@@ -91,7 +92,7 @@ export default function About() {
       />
 
       {/* 1991 onward */}
-      <Section id="history" eyebrow="1991 onward" title="One trade, carried on for thirty-five years">
+      <Section id="history" eyebrow="1991 onward" title="One trade, carried on since 1991">
         <ol className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {history.map((item) => (
             <li key={item.step} className="solid p-8" data-lift>

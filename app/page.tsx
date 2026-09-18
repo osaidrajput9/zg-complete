@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { YEARS_OPERATING } from "@/lib/site";
 import Hero from "@/components/Hero";
 import Section from "@/components/Section";
 import ChecksStrip from "@/components/ChecksStrip";
@@ -16,7 +17,7 @@ const fleet = [
   { value: 49, label: "Company owned", note: "Vehicles on our own books" },
   { value: 40, label: "On annual contract", note: "Committed to us for the term" },
   { value: 10, label: "Common carriers", note: "Available to cover a peak", prefix: "~" },
-  { value: 35, label: "Years on the road", note: "Carrying bulk liquid since 1991" },
+  { value: YEARS_OPERATING, label: "Years on the road", note: "Carrying bulk liquid since 1991" },
 ];
 
 /* PRD § Clients, by vertical. Publication permission is granted for every

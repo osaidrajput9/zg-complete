@@ -1,18 +1,20 @@
+import { YEARS_OPERATING } from "@/lib/site";
 import HeroMotion from "@/components/HeroMotion";
 import PakistanMap from "@/components/PakistanMap";
 import Preloader from "@/components/Preloader";
 
-/* The four figures are the fleet page's, not a second set: a visitor who
-   reads 49 here and 49 there is reading one company. The last one is the
-   six amber roads on the map directly behind it — M-2, M-3, M-4, M-5,
-   M-9 and the Grand Trunk Road.
+/* All four are the fleet page's figures, not a second set: a visitor who
+   reads 49 here and 49 there is reading one company. Every one traces to
+   a value the client has confirmed — the last used to be a count of the
+   amber roads on the map behind it, which was true of our own drawing
+   rather than of anything the client supplied.
 
    Counted up by HeroMotion, which reads `data-to` off each figure. */
 const STATS = [
   { to: 49, label: ["Company-owned", "vehicles"] },
   { to: 40, label: ["On annual", "contract"] },
-  { to: 35, label: ["Years on", "the road"] },
-  { to: 6, label: ["Core inland", "corridors"] },
+  { to: YEARS_OPERATING, label: ["Years on", "the road"] },
+  { to: 10, label: ["Stainless steel", "tankers"] },
 ];
 
 /**
