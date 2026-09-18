@@ -57,7 +57,10 @@ export default function MapReveal({
       const pulses = q<SVGPathElement>("[data-map-pulse] path");
       const nodeGs = q<SVGGElement>("[data-map-node]");
       const rings = q<SVGCircleElement>(".map-ring");
-      if (!corRoads.length) return;
+      /* An inset draws the boundary and its offices and nothing else, so
+         the road tweens below are skipped rather than the whole reveal. */
+      if (!outlines.length) return;
+      const hasRoads = corRoads.length > 0;
 
       /* The pulse is a short dash chased along the full corridor, so it
          needs the path's real rendered length either way. */
@@ -89,33 +92,41 @@ export default function MapReveal({
       gsap.set([outlines, nodeGs], { opacity: 0 });
 
       const timeline = gsap.timeline({ paused: true });
-      timeline
-        .to(outlines, { opacity: 1, duration: MAP.outlineDuration, ease: EASE.settle }, at.outline)
-        .to(
-          ctxRoads,
+      timeline.to(
+        outlines,
+        { opacity: 1, duration: MAP.outlineDuration, ease: EASE.settle },
+        at.outline,
+      );
+
+      if (hasRoads) {
+        timeline
+          .to(
+            ctxRoads,
           {
-            strokeDashoffset: 0,
-            duration: MAP.contextRoadDuration,
-            ease: EASE.carry,
-            stagger: MAP.contextRoadStagger,
-          },
-          at.context,
-        )
-        .to(
-          corRoads,
-          {
-            strokeDashoffset: 0,
-            duration: MAP.corridorRoadDuration,
-            ease: EASE.carry,
-            stagger: MAP.corridorRoadStagger,
-          },
-          at.corridor,
-        )
-        .to(
-          nodeGs,
-          { opacity: 1, duration: DUR.settle, ease: EASE.settle, stagger: MAP.nodeStagger },
-          at.nodes,
-        );
+              strokeDashoffset: 0,
+              duration: MAP.contextRoadDuration,
+              ease: EASE.carry,
+              stagger: MAP.contextRoadStagger,
+            },
+            at.context,
+          )
+          .to(
+            corRoads,
+            {
+              strokeDashoffset: 0,
+              duration: MAP.corridorRoadDuration,
+              ease: EASE.carry,
+              stagger: MAP.corridorRoadStagger,
+            },
+            at.corridor,
+          );
+      }
+
+      timeline.to(
+        nodeGs,
+        { opacity: 1, duration: DUR.settle, ease: EASE.settle, stagger: MAP.nodeStagger },
+        hasRoads ? at.nodes : at.offices,
+      );
 
       const loops: gsap.core.Tween[] = [];
 
@@ -129,7 +140,7 @@ export default function MapReveal({
         once: true,
         onEnter: () => {
           timeline.play();
-          if (isNarrow) return;
+          if (isNarrow || !hasRoads) return;
 
           /* Anonymous movement along the corridor. Nothing here names a
              vehicle, a load or a time — it marks that the lane is worked. */

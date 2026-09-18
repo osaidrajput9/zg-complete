@@ -18,6 +18,13 @@ These came from the client and override convenience.
    block; components use the generated utilities (`bg-navy-deep`,
    `text-cream`). **Amber is the map and nothing else** — no buttons, no
    icons, no hover states, no focus rings.
+
+   One agreed exception, and it is the only one: `Preloader` and the home
+   hero's eyebrow. The preloader *is* the map drawing itself, and the
+   eyebrow sits on the map and names what the corridor is. Both are the
+   map's own chrome rather than a second use of the colour. The audit
+   below allows those two files and nothing else, so a third use still
+   fails loudly.
 3. **Page H1 uses `revealLines()`. Section headings use
    `revealLines({ scroll: true })`. Body content uses `lift()`.** Wired by
    data attributes, not by calling these directly — see Motion below.
@@ -69,7 +76,16 @@ the stronger contrast anyway (11.0:1 vs 6.5:1). PRD geometry kept: 2px at
 ## Motion architecture
 
 `lib/motion.js` is the signed-off vocabulary — **do not edit it.**
-`lib/page.js` maps it onto markup via data attributes:
+
+`lib/sequence.js` sits on top of it and holds what the vocabulary does
+not: `MAP` (map-draw tuning, shared by all three scales), `HERO` (the home
+load), and the functions that turn those into **absolute** timeline
+positions — `heroBeats()`, `corridorBeats()`, `sweep()`, `withMotion()`.
+Rule 1 forbids raw numbers in a component and this file forbids editing
+the vocabulary; `sequence.js` is how both hold at once. It imports every
+easing from `EASE` and invents none.
+
+`lib/page.js` maps the vocabulary onto markup via data attributes:
 
 | Attribute | Gets |
 |---|---|
@@ -100,8 +116,19 @@ server.
   `aspect-ratio` or `width: auto` collapses to 0 in a flex container.
 - **`next/font` only exposes `axes` when no fixed `weight` is set.**
   Archivo loads as a variable font for the `wdth` axis.
-- **Map city labels collide** where nodes sit close. `CITY` entries take
-  `side: "left"`; the further-left city of a close pair reads leftwards.
+- **Map city labels collide** where nodes sit close. `PakistanMap` flips
+  the left-hand city of any crowded pair to read leftwards, measured
+  against every marker rather than only the labelled ones — Faisalabad
+  against Lahore, Karachi against Port Qasim.
+- **Relative timeline offsets hide a data dependency.** `"-=0.4"` is
+  measured from wherever the timeline ends, and the map tweens end at a
+  time set by how many elements the data produced. Positions come from
+  `sequence.js` as absolute seconds; the chain is written in the order
+  things happen, because a relative chain cannot guarantee it.
+- **`data/pakistan-map.json`'s `nodes` are hand-curated** and the build
+  script passes them through untouched, so adding a city there survives
+  `npm run map`. Positions are Web Mercator: `x` linear in `radians(lon)`,
+  `y` linear in `ln(tan(π/4 + lat/2))`, solvable from any two nodes.
 
 ## Verifying
 
@@ -121,47 +148,54 @@ forms validate and move focus to the first invalid field.
 Grep audits that catch rule breaks:
 
 ```
-grep -rnE '(duration|ease|delay|stagger|scrub)\s*:\s*("[a-z]|[0-9])' app components lib | grep -v lib/motion.js
+grep -rnE '(duration|ease|delay|stagger|scrub)\s*:\s*("[a-z]|[0-9])' app components lib | grep -vE 'lib/motion.js|lib/sequence.js'
 grep -rnE '#[0-9A-Fa-f]{6}\b' app components lib --include=*.tsx --include=*.ts | grep -v globals.css
-grep -rn 'amber' app components lib | grep -v 'PakistanMap\|globals.css'
+grep -rn 'amber' app components lib | grep -vE 'PakistanMap|globals.css|Preloader|Hero.tsx'
+```
+
+The first grep misses two rule-1 breaks it reads past — a bare easing
+string and a relative position are neither of them a `key: value` pair:
+
+```
+grep -rnE '"[+-]=[0-9]' app components lib
+grep -rnE '"(power|sine|expo|circ|back|elastic|bounce)[0-9]?\.(in|out|inOut)"' app components lib | grep -v lib/motion.js
+```
+
+And two for the copy rules, which nothing else catches:
+
+```
+grep -rniE 'world-class|cutting-edge|seamless|revolutionis|passion|\bfuel\b' app components
+grep -rniE '\blive\b' app components | grep -v aria-live
 ```
 
 ## Built
 
-`/edible-oil-transportation`, `/molasses-transportation`, `/fleet` and
-`/contact` were built here. The signed-off home hero was built separately
-and merged in afterwards.
+Every page in the PRD's sitemap now exists:
 
-Because the hero arrived from outside this history, **confirm the working
-tree before planning** rather than trusting this list:
+`/` (hero plus the six § Home sections), `/edible-oil-transportation`,
+`/molasses-transportation`, `/containers-finished-goods`, `/fleet`,
+`/about`, `/contact`, and the two portal placeholders `/orders` and
+`/tracking`. Plus `robots.ts`, `sitemap.ts` and `app/api/enquiry`.
+
+`PakistanMap` runs all three of rule 8's scales. The merge that brought
+the home hero in is settled: the redirect in `app/page.tsx` is gone, there
+is one map component, and the hero's colours and timings folded into
+`globals.css` and `sequence.js`.
+
+**Still confirm the working tree before planning** rather than trusting
+this list:
 
 ```
 find app -name 'page.tsx' | sort
-grep -rn 'redirect' app/page.tsx
-grep -rln 'svg' components | grep -i map
 ```
 
-Three things the merge may have left to settle:
+## Remaining
 
-- `app/page.tsx` held a redirect to the edible oil page as a stand-in for
-  the missing home page. If it is still there it shadows the real home —
-  delete it.
-- If the hero brought its own map, nav or glass CSS, reconcile rather than
-  keep both. Rule 8 allows one map component at three scales, and
-  `scale="hero"` had never been rendered before the merge, so check it at
-  full frame.
-- Any colour, font loading or easing the hero carried must fold into
-  `app/globals.css` and `lib/motion.js`. Run the grep audits above.
-
-## Remaining, in order
-
-1. Containers and finished goods — third service page, corridor map
-2. About — 1991 onward, `PakistanMap scale="inset"` for three branches
-3. Orders — placeholder, coming-soon block, no mock UI
-4. Assigned vehicle tracking — placeholder, same treatment
-5. Home sections below the hero, if the merge did not bring them — four
-   checks a day, what we move, dedicated stainless steel, fleet at a
-   glance, client wall, enquiry block (PRD § Home)
+No pages. What is left is the launch blockers below, and the PRD's open
+questions — per-type fleet counts, transit times, business hours, the
+telephone number, the head-office street address, which banks to name,
+and whether photography exists. All of those ship visibly marked pending
+today; none of them block a page, all of them block launch.
 
 ## Working rules
 
@@ -170,13 +204,20 @@ browser, not on a green build.
 
 ## Launch blockers
 
-- **The enquiry form has no endpoint.** It POSTs to `/api/enquiry`, which
-  does not exist, so every enquiry fails with the error state. Needs a
-  route handler and an email sender. This is the highest-priority gap on
-  a site whose job is producing enquiries.
-- No `robots.ts` / `sitemap.ts`. The PRD requires both, and robots should
-  block indexing until the site is complete.
-- `metadataBase` is hardcoded to `https://ziagoods.com`.
+- **The enquiry endpoint has no mailbox.** `app/api/enquiry/route.ts`
+  validates and routes, but sending needs `RESEND_API_KEY`,
+  `ENQUIRY_FROM` and `ENQUIRY_TO` (optionally `ENQUIRY_TO_EDIBLE_OIL`,
+  which PRD § Routing wants separated). Unconfigured it logs the whole
+  enquiry server-side and returns 503, so the form tells the buyer to
+  call rather than claiming a success that did not happen. **Nothing is
+  silently lost, but nothing is being received either.** Swapping Resend
+  for another provider is one function, `deliver()`.
+- **Indexing is off.** `robots.ts` disallows everything unless
+  `NEXT_PUBLIC_ALLOW_INDEXING=true`. Set it on production at launch and
+  not before.
+- `NEXT_PUBLIC_SITE_URL` should be set per environment, or canonicals on
+  a preview deployment point at production. Defaults to the production
+  domain when unset.
 
 ## Copy rules
 

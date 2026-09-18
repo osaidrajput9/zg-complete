@@ -467,6 +467,13 @@
   stroke-linejoin: round;
 }
 
+/* An inset draws no roads, so the boundary is the only line carrying the
+   shape of the country and takes a little more weight. Its markers are
+   offices rather than stops on a route, so they read at full strength. */
+.map--inset .map-boundary { stroke-width: 1.5; opacity: 1; }
+.map--inset .core         { r: 4.6px; }
+.map--inset .map-ring     { stroke-width: 2; }
+
 /* Preloader dots start dark and are lit in place by the load sequence. */
 .pre-dot {
   fill: var(--color-mist);

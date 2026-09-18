@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Archivo, IBM_Plex_Mono } from "next/font/google";
 
+import { SITE_URL } from "@/lib/site";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import MotionRoot from "@/components/MotionRoot";
@@ -26,7 +27,7 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ziagoods.com"),
+  metadataBase: new URL(SITE_URL),
   title: "Zia Goods & Carriage Contractor",
   description:
     "Bulk liquid haulage across Pakistan since 1991. Edible oil, molasses, chemicals and containerised finished goods.",
@@ -48,7 +49,7 @@ const schema = {
   description:
     "Bulk liquid haulage across Pakistan since 1991. Edible oil, molasses, chemicals and containerised finished goods.",
   foundingDate: "1991",
-  url: "https://ziagoods.com",
+  url: SITE_URL,
   email: "ziagoodsncarriage@gmail.com",
   areaServed: { "@type": "Country", name: "Pakistan" },
   address: {

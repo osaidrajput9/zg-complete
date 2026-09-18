@@ -10,7 +10,7 @@ import mapData from "@/data/pakistan-map.json";
  * 0–7 by its distance from the nearest corridor vertex so the route reads
  * as the focal plane and the country recedes behind it.
  *
- * Two scales:
+ * Three scales:
  *
  *   hero      full frame behind the home page headline — dot field,
  *             boundary, the whole road network, and the corridor under a
@@ -20,6 +20,11 @@ import mapData from "@/data/pakistan-map.json";
  *             field is dropped: at that width its 5,819 circles turn to
  *             mush and cost ~350KB of markup for nothing. Revealed by
  *             MapReveal, which scopes itself to its own subtree.
+ *   inset     About, at about half width: the boundary and the three
+ *             offices, nothing else. No roads, because this answers
+ *             "where are you" rather than "where do you run" — a
+ *             corridor here would be the service pages' argument
+ *             borrowed onto a page that is not making it.
  *
  * Server component on purpose. The map data is ~175KB and every element
  * below is static, so it renders to HTML on the server and none of the
@@ -42,16 +47,28 @@ const { viewBox, dots, outline, roads, nodes } = mapData as unknown as {
 const corridorRoads = roads.filter((r) => r.type === "corridor");
 const contextRoads = roads.filter((r) => r.type === "context");
 
+/* Paint order, back to front. The ids are what HeroMotion selects on; the
+   corridor's four layers are stacked strokes rather than an SVG blur
+   filter — same read, near-zero cost on mid-range mobile. */
+const ROAD_LAYERS = [
+  { id: "m-ctx", className: "road-ctx" },
+  { id: "m-bloom", className: "road-bloom" },
+  { id: "m-halo", className: "road-halo" },
+  { id: "m-cor", className: "road-cor" },
+  { id: "m-pulse", className: "road-pulse" },
+] as const;
+
 export default function PakistanMap({
   scale = "hero",
   stops,
   label,
   className = "",
 }: {
-  scale?: "hero" | "corridor";
-  /** Corridor scale only: the cities this service calls at. Everything
-      else on the network drops to an unlabelled context marker, so three
-      service pages sharing one motorway spine still read differently. */
+  scale?: "hero" | "corridor" | "inset";
+  /** Corridor and inset scales: the cities this page is about. On a
+      corridor everything else on the network drops to an unlabelled
+      context marker, so three service pages sharing one motorway spine
+      still read differently; on an inset nothing else is drawn at all. */
   stops?: string[];
   /** Corridor scale only: what the diagram shows, for assistive tech.
       The hero's map is decoration beside a headline that already says it,
@@ -60,13 +77,21 @@ export default function PakistanMap({
   className?: string;
 }) {
   const isHero = scale === "hero";
+  const isInset = scale === "inset";
 
-  /* The hero shows the country; a corridor diagram shows a route, so a
-     city is major there when the service actually calls at it. */
+  /* The hero shows the country; the other two show a named set, so a city
+     is major there when this page actually names it. */
   const isMajor = (n: Node) =>
     isHero ? Boolean(n.major) : Boolean(stops?.includes(n.label));
 
-  const shown = isHero ? nodes : nodes.filter((n) => isMajor(n) || n.major);
+  /* An inset draws only what it names. A corridor keeps the network's own
+     major cities as unlabelled landmarks so the route has something to be
+     read against. */
+  const shown = isHero
+    ? nodes
+    : isInset
+      ? nodes.filter(isMajor)
+      : nodes.filter((n) => isMajor(n) || n.major);
 
   /* Label offsets are attributes in viewBox units, so unlike the stroke
      widths in globals.css they cannot be scaled by a class — the corridor
@@ -97,7 +122,7 @@ export default function PakistanMap({
       className={
         isHero
           ? "h-[94%] max-h-[980px] w-auto"
-          : "map--corridor h-auto w-full overflow-visible"
+          : `map--corridor h-auto w-full overflow-visible${isInset ? " map--inset" : ""}`
       }
       {...(isHero
         ? { "aria-hidden": true }
@@ -117,35 +142,25 @@ export default function PakistanMap({
         ))}
       </g>
 
-      <g id={isHero ? "m-ctx" : undefined} data-map-ctx>
-        {contextRoads.map((r) => (
-          <path key={r.id} className="road-ctx" d={r.path} data-id={r.id} />
+      {/* The road network, in paint order: context behind, then the
+          corridor's bloom, halo, stroke and pulse stacked over it. An
+          inset draws none of them. */}
+      {!isInset &&
+        ROAD_LAYERS.map((layer) => (
+          <g
+            key={layer.id}
+            id={isHero ? layer.id : undefined}
+            {...(layer.id === "m-ctx"
+              ? { "data-map-ctx": true }
+              : layer.id === "m-pulse"
+                ? { "data-map-pulse": true }
+                : { "data-map-cor": true })}
+          >
+            {(layer.id === "m-ctx" ? contextRoads : corridorRoads).map((r) => (
+              <path key={r.id} className={layer.className} d={r.path} data-id={r.id} />
+            ))}
+          </g>
         ))}
-      </g>
-
-      <g id={isHero ? "m-bloom" : undefined} data-map-cor>
-        {corridorRoads.map((r) => (
-          <path key={r.id} className="road-bloom" d={r.path} data-id={r.id} />
-        ))}
-      </g>
-
-      <g id={isHero ? "m-halo" : undefined} data-map-cor>
-        {corridorRoads.map((r) => (
-          <path key={r.id} className="road-halo" d={r.path} data-id={r.id} />
-        ))}
-      </g>
-
-      <g id={isHero ? "m-cor" : undefined} data-map-cor>
-        {corridorRoads.map((r) => (
-          <path key={r.id} className="road-cor" d={r.path} data-id={r.id} />
-        ))}
-      </g>
-
-      <g id={isHero ? "m-pulse" : undefined} data-map-pulse>
-        {corridorRoads.map((r) => (
-          <path key={r.id} className="road-pulse" d={r.path} data-id={r.id} />
-        ))}
-      </g>
 
       <g id={isHero ? "m-nodes" : undefined}>
         {shown.map((n) => {

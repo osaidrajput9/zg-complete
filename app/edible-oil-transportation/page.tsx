@@ -237,8 +237,8 @@ export default function EdibleOilTransportation() {
           <MapReveal className="mx-auto w-full max-w-[520px]">
             <PakistanMap
               scale="corridor"
-              stops={["Port Qasim", "Hyderabad", "Sukkur", "Multan", "Faisalabad"]}
-              label="Map of the edible oil corridor from Port Qasim inland through Hyderabad, Sukkur and Multan to Faisalabad, drawn on Pakistan's motorway and national highway network."
+              stops={["Port Qasim", "Hyderabad", "Sukkur", "Multan", "Faisalabad", "Sargodha"]}
+              label="Map of the edible oil corridor from Port Qasim inland through Hyderabad, Sukkur, Multan and Faisalabad to Sargodha, drawn on Pakistan's motorway and national highway network."
             />
             <figcaption className="type-mono mt-4 text-steel">
               Port Qasim inland to central and northern Punjab
