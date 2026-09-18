@@ -118,6 +118,7 @@ export default function MolassesTransportation() {
       {/* Handling characteristics */}
       <Section
         id="handling"
+        light
         eyebrow="Handling characteristics"
         title="Molasses does not move like oil"
       >
@@ -299,7 +300,7 @@ export default function MolassesTransportation() {
       {/* Clients */}
       <Section
         id="clients"
-        deep
+        light
         eyebrow="Molasses clients"
         title="Sugar mills, traders and ethanol producers"
       >
@@ -342,7 +343,7 @@ export default function MolassesTransportation() {
       </Section>
 
       {/* Enquiry */}
-      <section id="enquiry" className="section-y">
+      <section id="enquiry" className="section-y bg-navy-deep">
         <div className="shell">
           <EnquiryForm
             cargo="molasses"

@@ -12,6 +12,10 @@ import type { ReactNode } from "react";
  *
  * Solid rather than glass: it sits on a flat section with nothing behind
  * it, and glass over nothing is a muddy rectangle.
+ *
+ * On the warm surface, because these two pages are a single short block
+ * and a full navy screen for three paragraphs reads as an error state
+ * rather than as something deliberately unfinished.
  */
 export default function ComingSoon({
   eyebrow,
@@ -27,7 +31,7 @@ export default function ComingSoon({
   footnote?: ReactNode;
 }) {
   return (
-    <section className="section-y">
+    <section className="section-y section-light">
       <div className="shell" data-lift-group>
         <div className="solid mx-auto max-w-[62ch] p-10 text-center sm:p-14">
           <p className="type-mono mb-6 text-steel" data-lift>

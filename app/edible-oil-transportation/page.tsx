@@ -117,6 +117,7 @@ export default function EdibleOilTransportation() {
       {/* Raw versus refined */}
       <Section
         id="raw-and-refined"
+        light
         eyebrow="What each grade needs"
         title="Raw and refined are not the same job"
       >
@@ -278,7 +279,7 @@ export default function EdibleOilTransportation() {
       </Section>
 
       {/* Clients */}
-      <Section id="clients" eyebrow="Edible oil clients" title="Who we move cooking oil for">
+      <Section id="clients" light eyebrow="Edible oil clients" title="Who we move cooking oil for">
         <ClientWall names={clients} note="Named with permission" />
       </Section>
 
@@ -319,7 +320,7 @@ export default function EdibleOilTransportation() {
       </Section>
 
       {/* Enquiry */}
-      <section id="enquiry" className="section-y">
+      <section id="enquiry" className="section-y bg-navy-deep">
         <div className="shell">
           <EnquiryForm
             cargo="edible-oil"

@@ -119,7 +119,7 @@ export default function Contact() {
       {/* The three locations, with what each one is for. */}
       <Section
         id="offices"
-        deep
+        light
         eyebrow="Where we are"
         title="Three offices, and what each one does"
       >

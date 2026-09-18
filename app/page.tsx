@@ -113,6 +113,7 @@ export default function Home() {
       {/* Dedicated stainless steel */}
       <Section
         id="stainless-steel"
+        light
         eyebrow="Dedicated capacity"
         title="Ten stainless steel tankers that carry one thing"
       >
@@ -162,6 +163,7 @@ export default function Home() {
       {/* Client wall */}
       <Section
         id="clients"
+        light
         eyebrow="Who we carry for"
         title="Oil mills, sugar mills, refineries, feed and soap"
       >

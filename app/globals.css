@@ -23,6 +23,21 @@
   --color-amber:     #E8A33D;  /* MAP ONLY — see note below      6.5:1 */
   --color-steel:     #6C7FB5;  /* muted labels, context roads     3.4:1 */
 
+  /* The light surface. `surface-light` is the section's own background and
+     `surface-light-raised` is a card sitting on it; both keep their own
+     names because .section-light re-points the palette below for its
+     descendants, and a background reading var(--color-cream) there would
+     resolve to the re-pointed value rather than to cream.
+
+     The three inks are measured on the surface, not invented: navy 12.6:1,
+     ink 9.8:1, ink-muted 7.5:1. Steel is deliberately absent — it is
+     3.5:1 on cream and cannot carry text there. */
+  --color-surface-light:        #F8F1E4;
+  --color-surface-light-raised: #EFE6D4;
+  --color-ink-strong: #011F7B;  /* primary text on cream          12.6:1 */
+  --color-ink:        #2E3A63;  /* secondary text on cream         9.8:1 */
+  --color-ink-muted:  #3D4B7A;  /* labels and eyebrows on cream    7.5:1 */
+
   /* --color-amber is restricted to the map, the preloader that draws it,
      and the home hero's eyebrow — which sits on the map and names what
      the corridor is. It measures 1.9:1 on cream, so it can never carry
@@ -191,6 +206,44 @@
   @supports (-webkit-backdrop-filter: blur(1px)) {
     .glass { -webkit-backdrop-filter: none; }
   }
+}
+
+/* A section on the warm surface.
+ *
+ * Nothing inside needs a light variant. Every component here colours
+ * itself from the palette utilities, and those resolve var(--color-*) at
+ * use time — so re-pointing the palette on this element inverts the text,
+ * borders, fills and cards underneath it without a single component
+ * knowing a light surface exists.
+ *
+ * Amber is not re-pointed and never appears here: it measures 1.9:1 on
+ * cream, which is the reason the PRD reserved it for the map in the first
+ * place. The map stays on navy.
+ * ------------------------------------------------------------------ */
+
+@utility section-light {
+  background: var(--color-surface-light);
+
+  /* Each of these points at a token that is NOT itself re-pointed here.
+     Custom properties resolve at use time, not at declaration time, so
+     `--color-cream: var(--color-navy)` would chase --color-navy to its
+     re-pointed value and land back on the surface colour — cream text on
+     a cream ground, invisible and green in the build. The ink-* and
+     surface-* tokens exist precisely to break that cycle. */
+  --color-cream:       var(--color-ink-strong);           /* primary text */
+  --color-mist:        var(--color-ink);                  /* secondary text */
+  --color-steel:       var(--color-ink-muted);            /* labels */
+  --color-navy:        var(--color-surface-light);        /* inverts btn-filled */
+  --color-navy-deep:   var(--color-surface-light-raised); /* .solid cards */
+
+  --color-line:        rgba(1, 31, 123, 0.14);
+  --color-line-strong: rgba(1, 31, 123, 0.28);
+  --color-fill-subtle: rgba(1, 31, 123, 0.05);
+  --color-fill-hover:  rgba(1, 31, 123, 0.09);
+
+  /* The ring follows the surface it is drawn on: ink measures 9.8:1 here,
+     against mist's 1.1:1. */
+  --focus-ring: var(--color-ink);
 }
 
 /* ------------------------------------------------------------------ *

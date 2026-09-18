@@ -92,7 +92,7 @@ export default function About() {
       />
 
       {/* 1991 onward */}
-      <Section id="history" eyebrow="1991 onward" title="One trade, carried on since 1991">
+      <Section id="history" light eyebrow="1991 onward" title="One trade, carried on since 1991">
         <ol className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {history.map((item) => (
             <li key={item.step} className="solid p-8" data-lift>
@@ -149,6 +149,7 @@ export default function About() {
       {/* The tracking department */}
       <Section
         id="tracking"
+        light
         eyebrow="How the operation runs"
         title="The tracking department is a department, not a dashboard"
       >

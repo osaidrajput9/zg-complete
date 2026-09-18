@@ -142,6 +142,7 @@ export default function ContainersFinishedGoods() {
       {/* What moves */}
       <Section
         id="cargo"
+        light
         eyebrow="What moves on them"
         title="Dry cargo, packed and ready to sell"
       >
@@ -292,6 +293,7 @@ export default function ContainersFinishedGoods() {
       {/* Clients */}
       <Section
         id="clients"
+        light
         eyebrow="Logistics and packaging clients"
         title="Who we move packed and finished goods for"
       >
@@ -335,7 +337,7 @@ export default function ContainersFinishedGoods() {
       </Section>
 
       {/* Enquiry */}
-      <section id="enquiry" className="section-y">
+      <section id="enquiry" className="section-y bg-navy-deep">
         <div className="shell">
           <EnquiryForm
             cargo="containers"

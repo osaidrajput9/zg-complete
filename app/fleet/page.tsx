@@ -153,7 +153,7 @@ export default function Fleet() {
       {/* The table */}
       <Section
         id="fleet-table"
-        deep
+        light
         eyebrow="By vehicle category"
         title="What we run, and what each type carries"
       >
@@ -212,6 +212,7 @@ export default function Fleet() {
       {/* Tracking */}
       <Section
         id="tracking"
+        light
         eyebrow="Tracking arrangement"
         title="Four providers, and four contacts a day"
       >
