@@ -36,7 +36,7 @@ export default function Hero() {
         id="hero"
         style={{ minHeight: "100svh" }}
       >
-        <PakistanMap variant="hero" />
+        <PakistanMap scale="hero" />
 
         <div className="shell relative z-[2]">
           <div className="max-w-[600px]">

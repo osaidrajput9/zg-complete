@@ -255,7 +255,7 @@ export default function MolassesTransportation() {
         <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
           <MapReveal className="mx-auto w-full max-w-[520px]">
             <PakistanMap
-              variant="corridor"
+              scale="corridor"
               stops={["Lahore", "Faisalabad", "Multan", "Sukkur", "Hyderabad", "Port Qasim"]}
               label="Map of the molasses corridor running from the Punjab mill belt at Lahore and Faisalabad through Multan and Sukkur to Hyderabad and Port Qasim, drawn on Pakistan's motorway and national highway network."
             />

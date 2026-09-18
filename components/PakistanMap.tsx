@@ -10,7 +10,7 @@ import mapData from "@/data/pakistan-map.json";
  * 0–7 by its distance from the nearest corridor vertex so the route reads
  * as the focal plane and the country recedes behind it.
  *
- * Two variants:
+ * Two scales:
  *
  *   hero      full frame behind the home page headline — dot field,
  *             boundary, the whole road network, and the corridor under a
@@ -43,23 +43,23 @@ const corridorRoads = roads.filter((r) => r.type === "corridor");
 const contextRoads = roads.filter((r) => r.type === "context");
 
 export default function PakistanMap({
-  variant = "hero",
+  scale = "hero",
   stops,
   label,
   className = "",
 }: {
-  variant?: "hero" | "corridor";
-  /** Corridor variant only: the cities this service calls at. Everything
+  scale?: "hero" | "corridor";
+  /** Corridor scale only: the cities this service calls at. Everything
       else on the network drops to an unlabelled context marker, so three
       service pages sharing one motorway spine still read differently. */
   stops?: string[];
-  /** Corridor variant only: what the diagram shows, for assistive tech.
+  /** Corridor scale only: what the diagram shows, for assistive tech.
       The hero's map is decoration beside a headline that already says it,
       so it is hidden rather than announced twice. */
   label?: string;
   className?: string;
 }) {
-  const isHero = variant === "hero";
+  const isHero = scale === "hero";
 
   /* The hero shows the country; a corridor diagram shows a route, so a
      city is major there when the service actually calls at it. */
@@ -70,7 +70,7 @@ export default function PakistanMap({
 
   /* Label offsets are attributes in viewBox units, so unlike the stroke
      widths in globals.css they cannot be scaled by a class — the corridor
-     variant sets its own, up by the same ~1.5 its type is. */
+     scale sets its own, up by the same ~1.5 its type is. */
   const dx = isHero ? 12 : 18;
   const dy = isHero ? 4 : 6;
 
