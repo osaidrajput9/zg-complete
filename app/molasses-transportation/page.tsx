@@ -127,7 +127,7 @@ export default function MolassesTransportation() {
             <article key={item.kind} className="solid p-8" data-lift>
               <p className="type-mono mb-4 text-steel">{item.kind}</p>
               <h3 className="type-h3 text-cream">{item.heading}</h3>
-              <p className="mt-5 text-mist">{item.body}</p>
+              <p className="mt-6 text-mist">{item.body}</p>
             </article>
           ))}
         </div>
@@ -147,7 +147,7 @@ export default function MolassesTransportation() {
           window is the whole question.
         </p>
 
-        <p className="type-mono mt-5 text-steel" data-lift>
+        <p className="type-mono mt-6 text-steel" data-lift>
           Season dates pending confirmation
         </p>
 
@@ -156,14 +156,14 @@ export default function MolassesTransportation() {
             <li
               key={item.step}
               data-lift
-              className={`grid grid-cols-[48px_1fr] gap-5 border-t border-line py-6 ${
+              className={`grid grid-cols-[48px_1fr] gap-6 border-t border-line py-6 ${
                 index === seasonality.length - 1 ? "border-b" : ""
               }`}
             >
               <p className="type-mono pt-[0.35em] text-steel">{item.step}</p>
               <div>
                 <h3 className="type-h3 text-cream">{item.title}</h3>
-                <p className="mt-3 max-w-[64ch] text-[0.9375rem] text-mist">{item.body}</p>
+                <p className="mt-4 max-w-[64ch] text-[0.9375rem] text-mist">{item.body}</p>
               </div>
             </li>
           ))}
@@ -183,7 +183,7 @@ export default function MolassesTransportation() {
             moving and what the receiving end can take, not of what happens to
             be in the yard.
           </p>
-          <p className="mt-5 text-mist" data-lift>
+          <p className="mt-6 text-mist" data-lift>
             The ten stainless steel tankers are not part of this fleet and never
             carry molasses. They are dedicated to refined edible oil and nothing
             else, which is only a meaningful claim if it holds in the weeks when
@@ -197,7 +197,7 @@ export default function MolassesTransportation() {
           >
             {fleet.map((fact) => (
               <div key={fact.label}>
-                <dt className="type-mono mb-3 text-steel">{fact.label}</dt>
+                <dt className="type-mono mb-4 text-steel">{fact.label}</dt>
                 <dd className="type-lede m-0 text-cream">{fact.value}</dd>
               </div>
             ))}
@@ -226,14 +226,14 @@ export default function MolassesTransportation() {
               afterwards. The procedure is the same one we run on every
               consignment, whatever is in the tank.
             </p>
-            <p className="mt-5 max-w-[58ch] text-mist" data-lift>
+            <p className="mt-6 max-w-[58ch] text-mist" data-lift>
               The tanker is weighed at the loading point and the reading recorded
               against the consignment. Four independent tracking providers cover
               the fleet and our own tracking department contacts the driver four
               times a day. It is weighed again at the discharge weighbridge, and
               you get both figures.
             </p>
-            <p className="mt-5 max-w-[58ch] text-mist" data-lift>
+            <p className="mt-6 max-w-[58ch] text-mist" data-lift>
               That is a measurement taken twice, not an assurance. It is also
               why a slow discharge is a scheduling problem rather than a
               commercial one: the number at the far end is the number that
@@ -273,14 +273,14 @@ export default function MolassesTransportation() {
               mill-to-plant legs that never approach the coast.
             </p>
 
-            <ul className="mt-8 grid gap-3">
+            <ul className="mt-8 grid gap-4">
               {legs.map((leg) => (
                 <li
                   key={`${leg.from}-${leg.to}`}
                   data-lift
-                  className="solid flex flex-wrap items-baseline justify-between gap-3 px-5 py-4"
+                  className="solid flex flex-wrap items-baseline justify-between gap-4 px-6 py-4"
                 >
-                  <p className="flex items-center gap-3 text-[0.9375rem] text-cream">
+                  <p className="flex items-center gap-4 text-[0.9375rem] text-cream">
                     <span>{leg.from}</span>
                     <ArrowRight size={14} className="text-steel" />
                     <span>{leg.to}</span>
@@ -290,7 +290,7 @@ export default function MolassesTransportation() {
               ))}
             </ul>
 
-            <p className="type-mono mt-5 text-steel" data-lift>
+            <p className="type-mono mt-6 text-steel" data-lift>
               Transit times pending confirmation
             </p>
           </div>
@@ -321,7 +321,7 @@ export default function MolassesTransportation() {
             negotiating in the weeks when every mill in the country wants the
             same tankers.
           </p>
-          <p className="mt-5 text-mist" data-lift>
+          <p className="mt-6 text-mist" data-lift>
             Beyond the 49 vehicles we own, a further 40 run for us on annual
             contract and around 10 common carriers are available when a peak
             needs covering. The same weighing procedure and the same tracking
@@ -334,7 +334,7 @@ export default function MolassesTransportation() {
           >
             {contractFacts.map((fact) => (
               <div key={fact.label}>
-                <dt className="type-mono mb-3 text-steel">{fact.label}</dt>
+                <dt className="type-mono mb-4 text-steel">{fact.label}</dt>
                 <dd className="type-figure m-0 text-cream">{fact.value}</dd>
               </div>
             ))}

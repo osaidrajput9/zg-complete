@@ -152,11 +152,11 @@ export default function ContainersFinishedGoods() {
               <p className="type-mono mb-4 text-steel">{item.kind}</p>
               <h3 className="type-h3 text-cream">{item.heading}</h3>
               <p className="type-mono mt-2 text-steel">{item.spec}</p>
-              <p className="mt-5 text-mist">{item.body}</p>
+              <p className="mt-6 text-mist">{item.body}</p>
 
-              <ul className="mt-6 space-y-3 border-t border-line pt-6 text-[0.9375rem] text-mist">
+              <ul className="mt-6 space-y-4 border-t border-line pt-6 text-[0.9375rem] text-mist">
                 {item.points.map((point) => (
-                  <li key={point} className="relative pl-5">
+                  <li key={point} className="relative pl-6">
                     <span
                       aria-hidden="true"
                       className="absolute left-0 top-[0.6em] h-px w-2 bg-steel"
@@ -182,7 +182,7 @@ export default function ContainersFinishedGoods() {
             <article key={item.name} className="solid p-8" data-lift>
               <h3 className="type-h3 text-cream">{item.name}</h3>
               <p className="type-mono mt-2 text-steel">{item.spec}</p>
-              <p className="mt-5 text-mist">{item.body}</p>
+              <p className="mt-6 text-mist">{item.body}</p>
               <p className="type-mono mt-6 border-t border-line pt-6 text-steel">
                 {item.units}
               </p>
@@ -217,7 +217,7 @@ export default function ContainersFinishedGoods() {
             workaround — waiting until there is enough to justify the vehicle —
             moves the cost into your stockholding instead.
           </p>
-          <p className="mt-5 text-mist" data-lift>
+          <p className="mt-6 text-mist" data-lift>
             Half bodies exist for the buyer who would rather take a delivery
             every week than a large one every month, and for runs short enough
             that a full body never earns its keep. It is the same fleet, the
@@ -231,7 +231,7 @@ export default function ContainersFinishedGoods() {
           >
             {coverage.map((fact) => (
               <div key={fact.label}>
-                <dt className="type-mono mb-3 text-steel">{fact.label}</dt>
+                <dt className="type-mono mb-4 text-steel">{fact.label}</dt>
                 <dd className="type-figure m-0 text-cream">{fact.value}</dd>
               </div>
             ))}
@@ -266,14 +266,14 @@ export default function ContainersFinishedGoods() {
               also move plant to depot on legs that never approach the coast.
             </p>
 
-            <ul className="mt-8 grid gap-3">
+            <ul className="mt-8 grid gap-4">
               {legs.map((leg) => (
                 <li
                   key={`${leg.from}-${leg.to}`}
                   data-lift
-                  className="solid flex flex-wrap items-baseline justify-between gap-3 px-5 py-4"
+                  className="solid flex flex-wrap items-baseline justify-between gap-4 px-6 py-4"
                 >
-                  <p className="flex items-center gap-3 text-[0.9375rem] text-cream">
+                  <p className="flex items-center gap-4 text-[0.9375rem] text-cream">
                     <span>{leg.from}</span>
                     <ArrowRight size={14} className="text-steel" />
                     <span>{leg.to}</span>
@@ -313,7 +313,7 @@ export default function ContainersFinishedGoods() {
             number of vehicles held against your volume, at a rate fixed for the
             term, with the same tracking arrangement on every run.
           </p>
-          <p className="mt-5 text-mist" data-lift>
+          <p className="mt-6 text-mist" data-lift>
             Beyond the 49 vehicles we own, a further 40 run for us on annual
             contract and around 10 common carriers are available when a peak
             needs covering. Containerised movement tends to be the most regular
@@ -328,7 +328,7 @@ export default function ContainersFinishedGoods() {
           >
             {fleetFacts.map((fact) => (
               <div key={fact.label}>
-                <dt className="type-mono mb-3 text-steel">{fact.label}</dt>
+                <dt className="type-mono mb-4 text-steel">{fact.label}</dt>
                 <dd className="type-figure m-0 text-cream">{fact.value}</dd>
               </div>
             ))}

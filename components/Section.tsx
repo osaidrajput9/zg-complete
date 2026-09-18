@@ -37,7 +37,7 @@ export default function Section({
     <section id={id} className={`section-y ${ground}`.trimEnd()}>
       <div className="shell" data-lift-group>
         {eyebrow && (
-          <p className="type-mono mb-5 text-steel" data-lift>
+          <p className="type-mono mb-6 text-steel" data-lift>
             {eyebrow}
           </p>
         )}

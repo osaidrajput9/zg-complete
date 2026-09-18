@@ -88,14 +88,14 @@ export default function Nav() {
   }, [pathname]);
 
   const navLink =
-    "inline-flex min-h-11 items-center gap-2 rounded-button px-3 text-[0.9375rem] text-mist " +
+    "inline-flex min-h-11 items-center gap-2 rounded-button px-4 text-[0.9375rem] text-mist " +
     "transition-colors duration-[var(--hover-duration)] ease-[var(--hover-ease)] " +
     "hover:bg-fill-hover hover:text-cream aria-[current]:text-cream";
 
   return (
     <header className="pointer-events-none fixed inset-x-0 top-4 z-50 px-[var(--gutter)]">
       <nav
-        className="glass pointer-events-auto mx-auto flex max-w-[1320px] items-center gap-6 py-3 pl-5 pr-4"
+        className="glass pointer-events-auto mx-auto flex max-w-[1320px] items-center gap-6 py-4 pl-6 pr-4"
         aria-label="Primary"
       >
         <Link
@@ -106,7 +106,7 @@ export default function Nav() {
           <Logo height="30px" />
         </Link>
 
-        <ul className="ml-2 hidden items-center gap-1 min-[1001px]:flex">
+        <ul className="ml-2 hidden items-center gap-2 min-[1001px]:flex">
           <li className="relative">
             <button
               type="button"
@@ -137,7 +137,7 @@ export default function Nav() {
                   <li key={service.href}>
                     <Link
                       href={service.href}
-                      className="block rounded-button p-3 text-[0.9375rem] text-mist transition-colors duration-[var(--hover-duration)] ease-[var(--hover-ease)] hover:bg-fill-hover hover:text-cream"
+                      className="block rounded-button p-4 text-[0.9375rem] text-mist transition-colors duration-[var(--hover-duration)] ease-[var(--hover-ease)] hover:bg-fill-hover hover:text-cream"
                       aria-current={isActive(service.href) ? "page" : undefined}
                     >
                       {service.label}

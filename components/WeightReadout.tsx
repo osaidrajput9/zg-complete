@@ -88,7 +88,7 @@ export default function WeightReadout({
     <div ref={rootRef} className="solid p-8">
       <div className="grid grid-cols-1 items-center gap-6 sm:grid-cols-[1fr_auto_1fr]">
         <div>
-          <p className="type-mono mb-3 text-steel">At load · weighbridge</p>
+          <p className="type-mono mb-4 text-steel">At load · weighbridge</p>
           <p className="type-figure flex items-baseline gap-[2px] text-cream">
             <span data-weight={load}>0.00</span>
             <span className="text-[0.4em] tracking-normal text-steel">t</span>
@@ -98,7 +98,7 @@ export default function WeightReadout({
         <div className="h-px w-full self-stretch bg-line sm:h-auto sm:w-px" aria-hidden="true" />
 
         <div>
-          <p className="type-mono mb-3 text-steel">At discharge · weighbridge</p>
+          <p className="type-mono mb-4 text-steel">At discharge · weighbridge</p>
           <p className="type-figure flex items-baseline gap-[2px] text-cream">
             <span data-weight={discharge}>0.00</span>
             <span className="text-[0.4em] tracking-normal text-steel">t</span>
@@ -108,13 +108,13 @@ export default function WeightReadout({
 
       <p
         data-mark
-        className="type-mono mt-6 inline-flex items-center gap-2 rounded-button border border-line-strong px-3 py-2 text-cream"
+        className="type-mono mt-6 inline-flex items-center gap-2 rounded-button border border-line-strong px-4 py-2 text-cream"
       >
         <Check size={15} />
         <span>{matched ? "Matched" : "Variance recorded"}</span>
       </p>
 
-      <p className="mt-5 max-w-[48ch] text-[0.9375rem] text-steel">
+      <p className="mt-6 max-w-[48ch] text-[0.9375rem] text-steel">
         A typical tanker load, captured at both ends and recorded against the
         consignment. Figures shown are representative of a standard run.
       </p>

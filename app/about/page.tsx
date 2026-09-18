@@ -131,7 +131,7 @@ export default function About() {
               <li key={office.role} className="solid p-8" data-lift>
                 <p className="type-mono mb-4 text-steel">{office.role}</p>
                 <h3 className="type-h3 text-cream">{office.city}</h3>
-                <address className="mt-3 text-[0.9375rem] not-italic leading-relaxed text-mist">
+                <address className="mt-4 text-[0.9375rem] not-italic leading-relaxed text-mist">
                   {office.lines.map((line) => (
                     <span key={line} className="block">
                       {line}
@@ -161,7 +161,7 @@ export default function About() {
               On top of that, our own staff contact the driver four times a day
               for the duration of every run.
             </p>
-            <p className="mt-5 text-mist" data-lift>
+            <p className="mt-6 text-mist" data-lift>
               The phone call is the part that matters. A tracker will tell you a
               vehicle has not moved for three hours. It will not tell you whether
               that is a queue at a weighbridge, a gate that will not accept the
@@ -169,7 +169,7 @@ export default function About() {
               is what makes a delay something we call you about rather than
               something you discover.
             </p>
-            <p className="mt-5 text-mist" data-lift>
+            <p className="mt-6 text-mist" data-lift>
               Weights are recorded at the loading point and again at discharge,
               and both readings go to the customer. A shortfall is then a number
               on a document rather than an argument between two people who each
@@ -178,28 +178,28 @@ export default function About() {
           </div>
 
           <div data-lift-group>
-            <h3 className="type-mono mb-5 text-steel" data-lift>
+            <h3 className="type-mono mb-6 text-steel" data-lift>
               Tracking providers
             </h3>
-            <ul className="grid gap-3">
+            <ul className="grid gap-4">
               {trackingPartners.map((partner) => (
                 <li
                   key={partner}
                   data-lift
-                  className="solid px-5 py-4 text-[0.9375rem] text-cream"
+                  className="solid px-6 py-4 text-[0.9375rem] text-cream"
                 >
                   {partner}
                 </li>
               ))}
             </ul>
 
-            <h3 className="type-mono mb-5 mt-10 text-steel" data-lift>
+            <h3 className="type-mono mb-6 mt-10 text-steel" data-lift>
               Banking
             </h3>
             <p className="text-[0.9375rem] text-mist" data-lift>
               Banking references are available to contract customers on request.
             </p>
-            <p className="type-mono mt-3 text-steel" data-lift>
+            <p className="type-mono mt-4 text-steel" data-lift>
               Institutions pending confirmation
             </p>
           </div>

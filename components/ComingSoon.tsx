@@ -43,7 +43,7 @@ export default function ComingSoon({
           </h1>
 
           <p
-            className="type-mono mt-6 inline-block rounded-button border border-line px-3 py-2 text-steel"
+            className="type-mono mt-6 inline-block rounded-button border border-line px-4 py-2 text-steel"
             data-lift
           >
             In development
@@ -53,9 +53,9 @@ export default function ComingSoon({
             {lede}
           </p>
 
-          <ul className="mt-10 space-y-3 border-t border-line pt-8 text-left text-[0.9375rem] text-mist">
+          <ul className="mt-10 space-y-4 border-t border-line pt-8 text-left text-[0.9375rem] text-mist">
             {points.map((point) => (
-              <li key={point} className="relative pl-5" data-lift>
+              <li key={point} className="relative pl-6" data-lift>
                 <span
                   aria-hidden="true"
                   className="absolute left-0 top-[0.6em] h-px w-2 bg-steel"

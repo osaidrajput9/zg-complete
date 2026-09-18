@@ -142,7 +142,7 @@ export default function EnquiryForm({
     });
 
   const fieldClass =
-    "min-h-11 rounded-surface border border-line bg-fill-subtle p-3 text-cream " +
+    "min-h-11 rounded-surface border border-line bg-fill-subtle p-4 text-cream " +
     "transition-colors duration-[var(--hover-duration)] ease-[var(--hover-ease)] " +
     "hover:border-line-strong aria-[invalid=true]:border-cream";
 
@@ -155,7 +155,7 @@ export default function EnquiryForm({
         <h2 className="type-h2 text-cream" data-reveal>
           {heading}
         </h2>
-        <p className="mt-5 text-mist" data-lift>
+        <p className="mt-6 text-mist" data-lift>
           {lede}
         </p>
       </div>
@@ -166,7 +166,7 @@ export default function EnquiryForm({
         method="post"
         noValidate
         onSubmit={onSubmit}
-        className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2"
+        className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2"
         data-lift
       >
         <div className="flex flex-col gap-2">
@@ -301,7 +301,7 @@ export default function EnquiryForm({
           />
         </div>
 
-        <div className="mt-3 flex flex-wrap items-center gap-4 sm:col-span-2">
+        <div className="mt-4 flex flex-wrap items-center gap-4 sm:col-span-2">
           <button type="submit" className="btn-base btn-filled" disabled={sending}>
             {sending ? "Sending…" : "Send enquiry"}
           </button>

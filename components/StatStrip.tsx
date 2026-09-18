@@ -59,14 +59,14 @@ export default function StatStrip({
     >
       {stats.map((stat) => (
         <div key={stat.label}>
-          <dt className="type-mono mb-3 text-steel">{stat.label}</dt>
+          <dt className="type-mono mb-4 text-steel">{stat.label}</dt>
           <dd className="m-0">
             <span className="type-figure text-cream">
               {stat.prefix}
               <span data-stat={stat.value}>0</span>
             </span>
             {stat.note && (
-              <span className="mt-3 block text-[0.9375rem] text-mist">{stat.note}</span>
+              <span className="mt-4 block text-[0.9375rem] text-mist">{stat.note}</span>
             )}
           </dd>
         </div>

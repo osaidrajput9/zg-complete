@@ -87,7 +87,7 @@ export default function Contact() {
 
             <dl className="mt-8">
               {reach.map((item) => (
-                <div key={item.label} className="border-t border-line py-5" data-lift>
+                <div key={item.label} className="border-t border-line py-6" data-lift>
                   <dt className="type-mono mb-2 text-steel">{item.label}</dt>
                   <dd
                     className={`m-0 text-[0.9375rem] ${item.pending ? "text-steel" : "text-cream"}`}
@@ -129,7 +129,7 @@ export default function Contact() {
               <p className="type-mono mb-4 text-steel">{office.role}</p>
               <h3 className="type-h3 text-cream">{office.city}</h3>
 
-              <address className="mt-5 not-italic leading-relaxed text-mist">
+              <address className="mt-6 not-italic leading-relaxed text-mist">
                 {office.lines.map((line) => (
                   <span key={line} className="block">
                     {line}

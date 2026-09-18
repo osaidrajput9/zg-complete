@@ -180,7 +180,7 @@ export default function Fleet() {
             <article key={category.id} id={category.id} className="solid p-8" data-lift>
               <p className="type-mono mb-4 text-steel">{category.spec}</p>
               <h3 className="type-h3 text-cream">{category.name}</h3>
-              <p className="mt-5 text-mist">{category.body}</p>
+              <p className="mt-6 text-mist">{category.body}</p>
               {category.note && (
                 <p className="mt-6 border-t border-line pt-6 text-[0.9375rem] text-steel">
                   {category.note}
@@ -202,7 +202,7 @@ export default function Fleet() {
             problem that surfaces at a weighbridge or a checkpoint, not in a
             quotation.
           </p>
-          <p className="mt-5 text-mist" data-lift>
+          <p className="mt-6 text-mist" data-lift>
             The distinction matters most on long motorway runs with a full tank,
             which is most of what we do.
           </p>
@@ -225,13 +225,13 @@ export default function Fleet() {
               services means a vehicle does not go quiet because one of them has
               a bad day.
             </p>
-            <p className="mt-5 max-w-[58ch] text-mist" data-lift>
+            <p className="mt-6 max-w-[58ch] text-mist" data-lift>
               Alongside the hardware, an in-house tracking department contacts
               every driver four times a day for the duration of a run. That is a
               person asking where the vehicle is and what it is doing, which is
               the part that catches a problem a map does not show.
             </p>
-            <p className="mt-5 max-w-[58ch] text-mist" data-lift>
+            <p className="mt-6 max-w-[58ch] text-mist" data-lift>
               The diagram elsewhere on this site shows the shape of the network,
               not a feed. We do not publish vehicle positions, and we do not
               attach identifiers or tonnages to anything on it.
@@ -280,7 +280,7 @@ export default function Fleet() {
             <h2 className="type-h2 text-cream" data-reveal>
               Tell us what needs moving
             </h2>
-            <p className="mt-5 text-mist" data-lift>
+            <p className="mt-6 text-mist" data-lift>
               If you know the cargo and the route, we can price it. If you are
               working out whether the fleet fits the job, say what you are moving
               and we will tell you which vehicle it goes on.

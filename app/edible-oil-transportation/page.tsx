@@ -127,11 +127,11 @@ export default function EdibleOilTransportation() {
               <p className="type-mono mb-4 text-steel">{grade.kind}</p>
               <h3 className="type-h3 text-cream">{grade.heading}</h3>
               <p className="type-mono mt-2 text-steel">{grade.spec}</p>
-              <p className="mt-5 text-mist">{grade.body}</p>
+              <p className="mt-6 text-mist">{grade.body}</p>
 
-              <ul className="mt-6 space-y-3 border-t border-line pt-6 text-[0.9375rem] text-mist">
+              <ul className="mt-6 space-y-4 border-t border-line pt-6 text-[0.9375rem] text-mist">
                 {grade.points.map((point) => (
-                  <li key={point} className="relative pl-5">
+                  <li key={point} className="relative pl-6">
                     <span
                       aria-hidden="true"
                       className="absolute left-0 top-[0.6em] h-px w-2 bg-steel"
@@ -161,7 +161,7 @@ export default function EdibleOilTransportation() {
             tanker that carried a solvent last week is not a food-grade tanker,
             whatever it is washed with.
           </p>
-          <p className="mt-5 text-mist" data-lift>
+          <p className="mt-6 text-mist" data-lift>
             That is a commercial decision rather than a technical one. Keeping
             ten units on a single cargo type costs utilisation — an empty return
             leg is an empty return leg. It is the only way to say that the tank
@@ -174,15 +174,15 @@ export default function EdibleOilTransportation() {
             data-lift
           >
             <div>
-              <dt className="type-mono mb-3 text-steel">Units</dt>
+              <dt className="type-mono mb-4 text-steel">Units</dt>
               <dd className="type-figure m-0 text-cream">10</dd>
             </div>
             <div>
-              <dt className="type-mono mb-3 text-steel">Cargo</dt>
+              <dt className="type-mono mb-4 text-steel">Cargo</dt>
               <dd className="type-lede m-0 text-cream">Refined edible oil only</dd>
             </div>
             <div>
-              <dt className="type-mono mb-3 text-steel">Rotated onto other cargo</dt>
+              <dt className="type-mono mb-4 text-steel">Rotated onto other cargo</dt>
               <dd className="type-lede m-0 text-cream">Never</dd>
             </div>
           </dl>
@@ -208,14 +208,14 @@ export default function EdibleOilTransportation() {
               <li
                 key={item.step}
                 data-lift
-                className={`grid grid-cols-[48px_1fr] gap-5 border-t border-line py-6 ${
+                className={`grid grid-cols-[48px_1fr] gap-6 border-t border-line py-6 ${
                   index === procedure.length - 1 ? "border-b" : ""
                 }`}
               >
                 <p className="type-mono pt-[0.35em] text-steel">{item.step}</p>
                 <div>
                   <h3 className="type-h3 text-cream">{item.title}</h3>
-                  <p className="mt-3 text-[0.9375rem] text-mist">{item.body}</p>
+                  <p className="mt-4 text-[0.9375rem] text-mist">{item.body}</p>
                 </div>
               </li>
             ))}
@@ -254,14 +254,14 @@ export default function EdibleOilTransportation() {
               port.
             </p>
 
-            <ul className="mt-8 grid gap-3">
+            <ul className="mt-8 grid gap-4">
               {legs.map((leg) => (
                 <li
                   key={`${leg.from}-${leg.to}`}
                   data-lift
-                  className="solid flex flex-wrap items-baseline justify-between gap-3 px-5 py-4"
+                  className="solid flex flex-wrap items-baseline justify-between gap-4 px-6 py-4"
                 >
-                  <p className="flex items-center gap-3 text-[0.9375rem] text-cream">
+                  <p className="flex items-center gap-4 text-[0.9375rem] text-cream">
                     <span>{leg.from}</span>
                     <ArrowRight size={14} className="text-steel" />
                     <span>{leg.to}</span>
@@ -271,7 +271,7 @@ export default function EdibleOilTransportation() {
               ))}
             </ul>
 
-            <p className="type-mono mt-5 text-steel" data-lift>
+            <p className="type-mono mt-6 text-steel" data-lift>
               Transit times pending confirmation
             </p>
           </div>
@@ -297,7 +297,7 @@ export default function EdibleOilTransportation() {
             term, with the same weighing procedure and the same tracking
             arrangement on every run.
           </p>
-          <p className="mt-5 text-mist" data-lift>
+          <p className="mt-6 text-mist" data-lift>
             Beyond the 49 vehicles we own, a further 40 run for us on annual
             contract and around 10 common carriers are available when a peak
             needs covering. For a refinery or a packer with a predictable monthly
@@ -311,7 +311,7 @@ export default function EdibleOilTransportation() {
           >
             {fleetFacts.map((fact) => (
               <div key={fact.label}>
-                <dt className="type-mono mb-3 text-steel">{fact.label}</dt>
+                <dt className="type-mono mb-4 text-steel">{fact.label}</dt>
                 <dd className="type-figure m-0 text-cream">{fact.value}</dd>
               </div>
             ))}

@@ -25,7 +25,7 @@ const portal = [
   { href: "/tracking", label: "Assigned vehicle tracking" },
 ];
 
-const label = "type-mono mb-3 text-steel";
+const label = "type-mono mb-4 text-steel";
 const listLink =
   "text-mist transition-colors duration-[var(--hover-duration)] ease-[var(--hover-ease)] hover:text-cream";
 
@@ -41,7 +41,7 @@ export default function Footer() {
           >
             <LogoMark height="34px" />
           </Link>
-          <p className="mt-5 max-w-[26ch] text-[0.9375rem] text-steel">
+          <p className="mt-6 max-w-[26ch] text-[0.9375rem] text-steel">
             Bulk liquid haulage across Pakistan since 1991.
           </p>
         </div>

@@ -108,12 +108,12 @@ export default function ChecksStrip() {
 
           {/* The accumulating rule. Its track is the line; the fill is what
               scales, so nothing reflows as it grows. */}
-          <div className="mt-5 h-px w-full bg-line" aria-hidden="true">
+          <div className="mt-6 h-px w-full bg-line" aria-hidden="true">
             <div data-rule className="h-px w-full origin-left bg-mist" />
           </div>
 
           <h3 className="type-h3 mt-6 text-cream">{check.title}</h3>
-          <p className="mt-3 text-[0.9375rem] text-mist">{check.body}</p>
+          <p className="mt-4 text-[0.9375rem] text-mist">{check.body}</p>
         </div>
       ))}
     </div>
